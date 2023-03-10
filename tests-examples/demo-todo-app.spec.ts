@@ -11,6 +11,35 @@ const TODO_ITEMS = [
 ];
 
 test.describe('New Todo', () => {
+  test.only('demo', async ({ page }) => {
+    const startTime = Date.now();
+
+    function first() {
+      return new Promise((res) => setTimeout(() => res('first'), 100));
+    }
+
+    function second() {
+      return new Promise((res) => setTimeout(() => res('second'), 200));
+    }
+
+    function third() {
+      return new Promise((res) => setTimeout(() => res('third'), 250));
+    }
+
+    async function executeFunctionsInParallel(first, second, third) {
+      // implementation
+   
+    }
+
+    expect(await executeFunctionsInParallel(first, second, third)).toEqual([
+      'first',
+      'second',
+      'third',
+    ]);
+
+    expect(Date.now() - startTime < 300).toEqual(true);
+  });
+
   test('should allow me to add todo items', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
